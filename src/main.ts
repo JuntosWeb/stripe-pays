@@ -7,19 +7,15 @@ async function bootstrap() {
   const apiHost = process.env.API_HOST ?? 'http://localhost:3000'
   const app = await NestFactory.create(AppModule);
   const corsConfig: CorsOptions = {
-    origin: 'https://juntosporlosdemas.org',   // <- tu dominio exacto
+    origin: ['https://juntosporlosdemas.org','https://www.juntosporlosdemas.org'],  
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
-    allowedHeaders: [
-      'Content-Type',
-      'Authorization',
-      'Accept',
-      'X-Requested-With',
-    ],
-    credentials: true,                         // si usas cookies o auth headers
-    maxAge: 86400,                             // cache pre‑flight 24h (opcional)
+    allowedHeaders: '*',
+    credentials: true,                         
+    maxAge: 86400,                             
   };
   console.log(`running on port: ${port}`);
   console.log(`API_HOST: ${apiHost}`);
+  app.options('*', cors());
   app.enableCors(corsConfig);
   await app.listen(port);
 }
