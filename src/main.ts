@@ -15,8 +15,7 @@ async function bootstrap() {
   };
   console.log(`running on port: ${port}`);
   console.log(`API_HOST: ${apiHost}`);
-  app.options('*', cors());
-  app.enableCors(corsConfig);
+  app.enableCors({...});
   await app.listen(port);
 }
 bootstrap();
