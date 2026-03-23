@@ -7,7 +7,7 @@ async function bootstrap() {
   const apiHost = process.env.API_HOST ?? 'http://localhost:3000'
   const app = await NestFactory.create(AppModule);
   const corsConfig: CorsOptions = {
-    origin: ['https://juntosporlosdemas.org','https://www.juntosporlosdemas.org'],  
+    origin: true,  
     methods: ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'],
     allowedHeaders: ['Content-Type', 'Authorization'],
     credentials: true,                         
